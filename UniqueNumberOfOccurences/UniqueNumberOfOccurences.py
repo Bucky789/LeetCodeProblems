@@ -1,20 +1,18 @@
 from typing import List
 
 
-def uniqueOccurrences(arr: List[int]) -> bool:
-        occurences = {}
-        for i in arr:
-            if(i in occurences):
-                occurences[i] += 1
-            else:
-                occurences[i] = 1
-        result = []
-        for i in occurences:
-            if(occurences[i] in result):
-                return False
-            else:
-                result.append(occurences[i])
-        return True
+def uniqueOccurrences(self, arr: List[int]) -> bool:
+    occurrences = {}
+    for i in arr:
+        occurrences[i] = occurrences.get(i, 0) + 1
+    
+    seen = set()
+    for freq in occurrences.values():
+        if freq in seen:
+            return False
+        seen.add(freq)
+    
+    return True
             
 
 arr = [1,2]
